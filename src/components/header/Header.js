@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Header(props) {
     const category = ["Fashion Wanita", "Fashion Pria", "Anak-Anak", "Travel & Entertaiment", "keuangan", "Rumah Tangga", "Supermarket", "Kosmetik", "Tas Sepatu", "Alat & Aksesoris", "Olahraga & Outdoor", "Elektronik", "Komputer & Laptop"];
@@ -55,9 +55,9 @@ export default function Header(props) {
 
                         <div className="flex md:gap-3">
                             <button className="md:w-20 md:h-9 rounded-md bg-white border border-green-500 text-green-500" onClick={props.clickLogin}>Masuk</button>
-                            <Link to="/register">
+                            <NavLink to="/register">
                                 <button className="hidden md:block md:w-20 md:h-9 rounded-md bg-green-500 text-white">Daftar</button>
-                            </Link>
+                            </NavLink>
                         </div>
                     }
                     {/* akhir right section */}

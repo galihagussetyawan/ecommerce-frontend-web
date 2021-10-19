@@ -1,10 +1,14 @@
 import React, { Fragment, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 //import components
 import Carousell from '../../components/carousell/Carousell';
 import SpecialProductBanner from '../../components/special-product/Special-Pruduct-Banner';
 import ProductCardScrollHorizontal from '../../components/product-card-scroll-horizontal/Product-Card-Scroll-Horizontal';
 import ProductCardGrid from '../../components/product-card-grid/Product-Card-Grid';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
+import Login from '../../components/login/Login';
 
 export default function HomePage(props) {
     const dataElektronik = [
@@ -195,8 +199,23 @@ export default function HomePage(props) {
         },
     ];
 
+    const [isLogin, setIsLogin] = useState(false);
+
+    const handleToggleLogin = () => {
+        setIsLogin(!isLogin)
+    };
+
     return (
         <Fragment>
+            <Helmet>
+                <title>Situs Jual Beli Online Terlengkap, Terpercaya</title>
+            </Helmet>
+
+            {isLogin && <Login closeAction={handleToggleLogin} />}
+
+            <Header
+                clickLogin={handleToggleLogin}
+            />
 
             <div className="max-w-full flex flex-col items-center overflow-hidden">
 
@@ -214,8 +233,9 @@ export default function HomePage(props) {
                 />
 
                 <ProductCardGrid data={dataKuliner} />
-
             </div>
+
+            <Footer />
 
         </Fragment>
     )
