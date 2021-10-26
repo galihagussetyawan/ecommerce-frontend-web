@@ -17,20 +17,25 @@ export default function Register() {
 
                     <div className="main flex md:w-full md:h-3/5">
                         <div className="left-main flex items-center md:w-1/2 md:h-full">
-                            <img className=" h-3/5" src="https://ecs7.tokopedia.net/img/content/register_new.png" />
+                            <img className="md:w-3/4" src="https://ecs7.tokopedia.net/img/content/register_new.png" />
                         </div>
                         <div className="right-main md:w-1/2 md:h-full">
-                            <div className="card flex justify-center items-center md:w-4/5 md:h-full bg-gray-300">
-                                <div className="wrapper md:w-11/12 md:h-5/6">
-                                    <h1>Daftar Sekarang</h1>
-                                    <p>Sudah punya akun Trendyol?</p>
-                                    <button>Goggle</button>
-                                    <p>atau daftar dengan</p>
+                            <div className="card flex justify-center items-center md:w-4/5 md:h-full md:border md:border-gray-200 md:shadow">
+                                <div className="wrapper md:w-4/5 md:h-5/6 flex flex-col justify-center gap-6 text-sm text-gray-500">
 
-                                    <div className="section">
-                                        <p>Phone Number or Email</p>
-                                        <input placeholder="masukan" />
+                                    <div className="section flex flex-col gap-1">
+                                        <h className="text-lg font-bold text-center text-gray-700">Daftar Sekarang</h>
+                                        <p className="text-xs text-center">Sudah punya akun Trendyol?</p>
                                     </div>
+                                    <button className="md:w-full p-2 rounded-md bg-gray-200">Google</button>
+                                    <p className="text-xs text-center">atau daftar dengan</p>
+
+                                    <div className="section flex flex-col gap-1">
+                                        <p>Phone Number or Email</p>
+                                        <input className="md:w-full p-2 rounded-md border outline-none focus:border-green-500 border-gray-300" />
+                                        <p className="text-xs">Example: email@trendyol.com</p>
+                                    </div>
+                                    <button className="md:w-full p-2 rounded-md bg-gray-200">Daftar</button>
                                 </div>
                             </div>
                         </div>

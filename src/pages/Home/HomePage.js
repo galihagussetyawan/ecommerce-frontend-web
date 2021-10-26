@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 //import components
@@ -9,6 +9,9 @@ import ProductCardGrid from '../../components/product-card-grid/Product-Card-Gri
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import Login from '../../components/login/Login';
+
+//import serviceas
+import AuthenticationService from '../../services/AuthenticationService';
 
 export default function HomePage(props) {
     const dataElektronik = [
@@ -204,6 +207,11 @@ export default function HomePage(props) {
     const handleToggleLogin = () => {
         setIsLogin(!isLogin)
     };
+
+    useEffect(() => {
+        AuthenticationService.getCurrentUser()
+            .then(response => console.log(response))
+    }, [])
 
     return (
         <Fragment>

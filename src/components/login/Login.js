@@ -1,6 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react';
+
+//import services
+import AuthenticationService from '../../services/AuthenticationService';
 
 export default function Login(props) {
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
+
+    //handle change value input
+    const handleChangeUsername = event => {
+        setUsername(event.target.value);
+    };
+
+    const handleChangePassword = event => {
+        setPassword(event.target.value);
+    };
+
+    const handleSubmit = () => {
+        AuthenticationService.login(username, password)
+            .then(response => console.log(response));
+    };
+
     return (
         <div className="w-screen h-screen flex justify-center items-center fixed bg-opacity-60 bg-gray-900 z-10">
             <div className="login-card w-full h-full md:w-1/4 md:h-3/5 rounded-md flex flex-col justify-center items-center bg-white">
@@ -28,13 +48,13 @@ export default function Login(props) {
 
                     <div className="section flex flex-col gap-2">
                         <p className="text-xs font-bold text-gray-600">Nomor Hp atau Email</p>
-                        <input className="w-full p-2 outline-none rounded-md border border-gray-300 focus:border-green-500"></input>
+                        <input className="w-full p-2 outline-none rounded-md border border-gray-300 focus:border-green-500" onChange={handleChangeUsername}></input>
                         <p className="text-xs text-gray-500">Contoh: email@tokopedia.com</p>
                     </div>
 
                     <div className="section flex flex-col gap-2">
                         <p className="text-xs font-bold text-gray-600">Kata Sandi</p>
-                        <input className="w-full p-2 outline-none rounded-md border border-gray-300 focus:border-green-500"></input>
+                        <input className="w-full p-2 outline-none rounded-md border border-gray-300 focus:border-green-500" onChange={handleChangePassword}></input>
                     </div>
 
                     <div className="section flex justify-end">
@@ -42,9 +62,8 @@ export default function Login(props) {
                     </div>
 
                     <div>
-                        <button className="w-full rounded-md bg-gray-300 p-2 text-gray-600">Selanjutnya</button>
+                        <button className="w-full rounded-md bg-gray-300 p-2 text-gray-600" onClick={handleSubmit}>Selanjutnya</button>
                     </div>
-
 
                 </div>
             </div>
