@@ -7,13 +7,15 @@ class AuthenticationService {
     currentUser = "currentUser";
     currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem("currentUser")));
 
-    async login() {
-        return await axios.get(constants.API_URL + "login")
+    async login(username, password) {
+        return await axios.post(constants.API_URL + "login", {
+            username, password
+        })
             .then(response => {
+
                 if (!response.ok) {
                     if ([401, 403].indexOf(response.status)) {
                         localStorage.removeItem(this.currentUser);
-                        window.location.reload(true);
                     }
                 }
 
@@ -25,24 +27,31 @@ class AuthenticationService {
             .catch(error => error);
     };
 
-    async getCurrentUser() {
-        return await JSON.parse(localStorage.getItem(this.currentUser));
+    getCurrentUser() {
+        return this.currentUserSubject.value;
     };
 
     async logout() {
         localStorage.removeItem(this.currentUser);
         this.currentUserSubject.next(null);
-        window.location.reload(true);
     };
 
     async authHeader() {
         const user = JSON.parse(localStorage.getItem(this.currentUser));
 
         if (user && user.access_token) {
-            return { "Authorization": "Bearer " + user.access_token };
+            return { Authorization: "Bearer " + user.access_token };
         } else {
             return {};
         }
+    };
+
+    async isAuthenticated() {
+        if (localStorage.getItem(this.currentUser) !== null) {
+            return true;
+        }
+
+        return false;
     }
 
 };
