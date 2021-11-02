@@ -13,18 +13,29 @@ class AuthenticationService {
         })
             .then(response => {
 
-                if (!response.ok) {
-                    if ([401, 403].indexOf(response.status)) {
-                        localStorage.removeItem(this.currentUser);
-                    }
-                }
+                // if (!response.ok) {
+                //     console.log("jancok");
 
-                localStorage.setItem(this.currentUser, JSON.stringify(response.data));
-                this.currentUserSubject.next(response.data);
+                //     if ([403].indexOf(response.status)) {
+                //         localStorage.removeItem(this.currentUser);
+                //     }
+                // }
+
+                if (response.status === 200) {
+                    localStorage.setItem(this.currentUser, JSON.stringify(response.data));
+                    this.currentUserSubject.next(response.data);
+
+                }
 
                 return response;
             })
-            .catch(error => error);
+            .catch(error => {
+                if (error.response.data.status === 403) {
+                    localStorage.removeItem(this.currentUser);
+                }
+
+                return error.response.data;
+            })
     };
 
     getCurrentUser() {
@@ -46,7 +57,7 @@ class AuthenticationService {
         }
     };
 
-    async isAuthenticated() {
+    isAuthenticated() {
         if (localStorage.getItem(this.currentUser) !== null) {
             return true;
         }

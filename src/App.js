@@ -27,7 +27,7 @@ export default class App extends Component {
   render() {
     return (
       <Router basename="/">
-        <div className="max-w-full overflow-hidden">
+        <div className="w-screen h-screen overflow-hidden overflow-y-scroll">
 
           <Switch>
             <AuthProvider>
@@ -35,9 +35,9 @@ export default class App extends Component {
               {/* <Route path="/register" component={Register} /> */}
               {/* <PrivateRoute path="/admin" component={Admin} /> */}
               <PublicRoute restricted={false} component={Homepage} path="/" exact />
-              <PublicRoute restricted={true} component={Register} path="/register" exact />
-              <PublicRoute restricted={false} component={Login} path="/login" exact />
-              <PrivateRoute component={Admin} path="/dashboard" exact />
+              <PublicRoute restricted={true} component={Register} path="/register" redirect="/" />
+              <PublicRoute restricted={true} component={Login} path="/login" redirect="/" />
+              <PrivateRoute component={Admin} path="/dashboard" />
             </AuthProvider>
           </Switch>
 
