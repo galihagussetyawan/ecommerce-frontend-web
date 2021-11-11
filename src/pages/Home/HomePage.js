@@ -200,6 +200,9 @@ const dataKuliner = [
         color: 'Black',
     },
 ];
+
+const category = ["Fashion Wanita", "Fashion Pria", "Anak-Anak", "Travel & Entertaiment", "keuangan", "Rumah Tangga", "Supermarket", "Kosmetik", "Tas Sepatu", "Alat & Aksesoris", "Olahraga & Outdoor", "Elektronik", "Komputer & Laptop"];
+const urlIcon = "https://images.tokopedia.net/img/cache/64-square/iEWsxH/2021/4/19/832aaa22-b9bf-42d3-86da-21b77dca4716.png?ect=4g";
 export default class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -225,8 +228,25 @@ export default class HomePage extends Component {
                 {this.state.toggleLogin && <Login closeAction={this.onToggleLogin} />}
 
                 <Header
-                    clickLogin={this.onToggleLogin}
-                />
+                    onLoginBox={this.onToggleLogin}
+                >
+                    {/* category section */}
+                    <div className="category-section md:w-3/4 w-11/12 flex md:flex md:justify-between gap-5 md:gap-0 md:pb-3 overflow-x-scroll md:overflow-x-hidden">
+                        {category.map(data => {
+                            return (
+                                <div className="card-kategori w-14 flex flex-col justify-between items-center md:w-auto">
+                                    <div className="w-14 h-14 p-1 rounded-full md:hidden bg-white">
+                                        <img className="object-contain" src={urlIcon}></img>
+                                    </div>
+                                    <div className="h-1/2 md:h-full flex items-center">
+                                        <p className="text-center text-xs md:cursor-pointer md:hover:text-green-500 md:text-gray-500">{data}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    {/* akhir category */}
+                </Header>
 
                 <div className="max-w-full flex flex-col items-center overflow-hidden">
 

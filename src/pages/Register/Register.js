@@ -38,7 +38,9 @@ export default class Register extends Component {
 
                                         <div className="section flex flex-col gap-1">
                                             <h className="text-lg font-bold text-center text-gray-700">Daftar Sekarang</h>
-                                            <p className="text-xs text-center">Sudah punya akun Trendyol?</p>
+                                            <NavLink to="/login">
+                                                <p className="text-xs text-center">Sudah punya akun Trendyol?</p>
+                                            </NavLink>
                                         </div>
                                         <button className="md:w-full p-2 rounded-md bg-gray-200">Google</button>
                                         <p className="text-xs text-center">atau daftar dengan</p>

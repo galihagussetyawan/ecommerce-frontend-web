@@ -10,7 +10,8 @@ export default class Login extends Component {
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            error: false
         }
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
@@ -32,7 +33,11 @@ export default class Login extends Component {
         AuthenticationService.login(this.state.username, this.state.password)
             .then(response => {
 
-                if (response.status === 403) console.log(response.message);
+                if (response.status === 403) {
+                    this.setState({
+                        error: true
+                    })
+                }
 
                 if (response.status === 200) {
                     console.log("login success");
@@ -61,6 +66,14 @@ export default class Login extends Component {
                             </NavLink>
                         </div>
                         <div className="section flex flex-col gap-1">
+                            {this.state.error &&
+                                <div className="error-alert w-full flex gap-2 p-1 rounded-sm text-xs md:text-sm text-red-400 bg-red-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                    </svg>
+                                    <p>Username atau Password Salah</p>
+                                </div>
+                            }
                             <p className="text-xs font-bold text-gray-600">Nomor Hp atau Email</p>
                             <input className="w-full p-2 outline-none rounded-md border border-gray-300 focus:border-green-500" onChange={this.onChangeUsername} />
                             <p className="text-xs text-right">Contoh: email@trendyol.com</p>

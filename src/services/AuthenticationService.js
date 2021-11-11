@@ -45,6 +45,7 @@ class AuthenticationService {
     async logout() {
         localStorage.removeItem(this.currentUser);
         this.currentUserSubject.next(null);
+        window.location.reload(true);
     };
 
     async authHeader() {

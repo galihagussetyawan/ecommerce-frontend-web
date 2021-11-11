@@ -41,7 +41,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div className="w-screen h-screen flex justify-center items-center fixed bg-opacity-60 bg-gray-900 z-10">
+            <div className="w-screen h-screen z-20 flex justify-center items-center fixed bg-opacity-60 bg-gray-900 z-10">
                 <div className="login-card w-full h-full md:w-1/5 md:h-3/5 rounded-none md:rounded-md flex flex-col justify-center items-center bg-white">
 
                     {/* close button */}

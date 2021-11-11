@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import pages
 import Homepage from './pages/Home/HomePage';
-import Admin from './pages/Admin/Admin';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
+import CategoryPage from './pages/Category/CategoryPage';
+import ProductPage from './pages/Product-Page/ProductPage';
 
 //import services
 import AuthenticationService from './services/AuthenticationService';
@@ -35,9 +37,11 @@ export default class App extends Component {
               {/* <Route path="/register" component={Register} /> */}
               {/* <PrivateRoute path="/admin" component={Admin} /> */}
               <PublicRoute restricted={false} component={Homepage} path="/" exact />
+              <PublicRoute restricted={false} component={CategoryPage} path="/category" />
+              <PublicRoute restricted={false} component={ProductPage} path="/product" />
               <PublicRoute restricted={true} component={Register} path="/register" redirect="/" />
               <PublicRoute restricted={true} component={Login} path="/login" redirect="/" />
-              <PrivateRoute component={Admin} path="/dashboard" />
+              <PrivateRoute component={Dashboard} path="/dashboard" />
             </AuthProvider>
           </Switch>
 

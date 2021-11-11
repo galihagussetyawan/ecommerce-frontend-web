@@ -3,7 +3,7 @@ export default class ProductCard extends Component {
     render() {
         return (
             <div className="h-72 md:cursor-pointerz">
-                <div className="w-32 h-full border shadow-sm rounded-md overflow-hidden md:w-48">
+                <div className=" h-full border shadow-sm rounded-md overflow-hidden">
 
                     <div className="image-section w-full h-1/2 md:h-3/5 overflow-hidden">
                         <img className="w-full h-full object-fill" src={this.props.imgSrc}></img>

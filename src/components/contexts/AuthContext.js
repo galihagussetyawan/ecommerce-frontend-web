@@ -10,8 +10,9 @@ export class AuthProvider extends Component {
         super(props);
 
         this.state = {
-            username: '',
-            isAuthenticated: this.checkAuthIsAuth()
+            username: this.getUser() ? this.getUser().username : '',
+            isAuthenticated: this.checkAuthIsAuth(),
+            store: false
         }
     }
 
@@ -19,11 +20,16 @@ export class AuthProvider extends Component {
         return AuthenticationService.isAuthenticated();
     }
 
+    getUser() {
+        return AuthenticationService.getCurrentUser();
+    }
+
     render() {
-        const { username, isAuthenticated } = this.state;
+        const { username, store, isAuthenticated } = this.state;
+        console.log(username);
 
         return (
-            <AuthContext.Provider value={{ username, isAuthenticated }}>
+            <AuthContext.Provider value={{ username, store, isAuthenticated }}>
                 {this.props.children}
             </AuthContext.Provider>
         );
