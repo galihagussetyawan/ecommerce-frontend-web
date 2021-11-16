@@ -20,10 +20,9 @@ export default class Dashboard extends Component {
 
                 <Header />
 
-
                 <div className="md:flex">
                     {/* side menu */}
-                    <div className="side-menu md:w-64 md:h-screen md:flex md:flex-col md:gap-5 md:text-sm md:overflow-y-scroll">
+                    <div className="side-menu md:w-64 md:h-screen md:flex md:flex-col md:gap-5 md:text-sm">
 
                         <div className="md:py-3 md:text-gray-600">
                             <div className="md:flex md:justify-center md:gap-2 md:cursor-pointer">

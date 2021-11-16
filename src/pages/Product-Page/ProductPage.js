@@ -143,7 +143,7 @@ export default class ProductPage extends Component {
                                 <div className="md:w-full md:flex md:flex-col md:gap-2 md:text-sm md:text-gray-600">
                                     <div className="md:w-2/4 md:h-8 md:flex md:justify-between md:rounded-md md:border md:border-gray-200 md:overflow-hidden">
                                         <button className="md:w-8 md:h-full md:hover:bg-gray-100">+</button>
-                                        <input className="md:w-10 md:text-center md:outline-none" />
+                                        <input className="md:w-10 md:text-center md:outline-none" value="1" />
                                         <button className="md:w-8 md:h-full md:hover:bg-gray-100">-</button>
                                     </div>
                                     <div>
