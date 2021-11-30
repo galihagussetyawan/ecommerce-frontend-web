@@ -1,6 +1,39 @@
-import React, { Component } from 'react';
-
+import React, { Component, Fragment } from 'react';
 export default class AddProductComponent extends Component {
+    fileObj = [];
+    fileArray = [];
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            file: [null]
+        }
+
+        this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this);
+        this.uploadFiles = this.uploadFiles.bind(this);
+    }
+
+    uploadMultipleFiles(event) {
+        if (Array.from(event.target.files).length > 5) {
+            return;
+        }
+
+        this.fileObj.push(event.target.files);
+        for (let i = 0; i < this.fileObj[0].length; i++) {
+            this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]))
+        }
+
+        this.setState({
+            file: this.fileArray
+        })
+    }
+
+    uploadFiles(event) {
+        event.preventDefault();
+        console.log(this.state.file)
+    }
+
     render() {
         return (
             <div className="md:w-full md:h-full md:flex md:flex-col md:gap-8 md:p-8 md:text-sm md:text-gray-500 md:bg-gray-100">
@@ -13,14 +46,30 @@ export default class AddProductComponent extends Component {
                     <div className="md:flex md:flex-col md:gap-14">
                         <p>Pilih foto produk atau tarik dan letakkan sehingga 5 foto sekaligus</p>
                         <div className="md:w-4/5 md:h-52 md:flex md:gap-2 md:m-auto">
-                            <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
-                            <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
-                            <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
-                            <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
-                            <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
-                            <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
+                            {
+                                this.fileArray.length === 0
+                                    ? <div className="md:w-full md:flex md:gap-2">
+                                        <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
+                                        <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
+                                        <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
+                                        <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
+                                        <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100"></div>
+                                    </div>
+                                    : this.fileArray.map(url => {
+                                        return (
+                                            <div className="md:w-1/4 md:h-full md:rounded-md md:border md:border-gray-200 md:bg-gray-100">
+                                                <img className="md:w-full md:h-full" src={url} />
+                                            </div>
+                                        );
+                                    })
+                            }
                         </div>
-                        <button className="md:w-44 md:h-11 md:border md:border-green-500 md:m-auto md:rounded-md md:text-green-500">Pilih Gambar Produk</button>
+                        <div className="md:m-auto">
+                            <div className="md:w-44 md:h-11 md:relative">
+                                <input className="md:w-full md:h-full md:absolute md:outline-none md:opacity-0" type="file" onChange={this.uploadMultipleFiles} />
+                                <button className="md:w-full md:h-full md:border md:border-green-500 md:m-auto md:rounded-md md:text-green-500">Pilih Gambar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {/*akhir upload produk section */}

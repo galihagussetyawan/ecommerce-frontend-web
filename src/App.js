@@ -8,6 +8,8 @@ import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import CategoryPage from './pages/Category/CategoryPage';
 import ProductPage from './pages/Product-Page/ProductPage';
+import WhislistPage from './pages/Wishlist/WishlistPage';
+import CartPage from './pages/Cart/CartPage';
 
 //import services
 import AuthenticationService from './services/AuthenticationService';
@@ -41,6 +43,8 @@ export default class App extends Component {
               <PublicRoute restricted={false} component={ProductPage} path="/product" />
               <PublicRoute restricted={true} component={Register} path="/register" redirect="/" />
               <PublicRoute restricted={true} component={Login} path="/login" redirect="/" />
+              <PrivateRoute component={WhislistPage} path="/wishlist" />
+              <PrivateRoute component={CartPage} path="/cart" />
               <PrivateRoute component={Dashboard} path="/dashboard" />
             </AuthProvider>
           </Switch>

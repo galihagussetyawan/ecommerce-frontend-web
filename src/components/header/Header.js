@@ -86,6 +86,8 @@ export default class Header extends Component {
                             {/* notification section */}
                             {isAuthenticated &&
                                 <Fragment>
+
+                                    {/* cart icon */}
                                     <div id="dropdown-cart" className="md:p-2" onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>
                                         <button className="flex md:p-1 rounded-sm md:hover:bg-gray-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 block md:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -105,6 +107,7 @@ export default class Header extends Component {
                                             </Dropdown>
                                         }
                                     </div>
+                                    {/* akhir cart icon */}
 
                                     <div id="dropdown-notification" className="md:p-2" onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>
                                         <button className="flex md:p-1 rounded-sm md:hover:bg-gray-100">

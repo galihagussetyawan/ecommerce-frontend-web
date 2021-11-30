@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 export default class ProductCard extends Component {
     render() {
         return (
-            <div className="h-72 md:cursor-pointerz">
-                <div className=" h-full border shadow-sm rounded-md overflow-hidden">
+            <div className="md:cursor-pointer border shadow-sm rounded-md overflow-hidden">
+                <div className="h-full overflow-hidden">
 
                     <div className="image-section w-full h-1/2 md:h-3/5 overflow-hidden">
                         <img className="w-full h-full object-fill" src={this.props.imgSrc}></img>
@@ -31,8 +31,8 @@ export default class ProductCard extends Component {
                                 <p>4.8 || Terjual 360</p>
                             </div>
                         </div>
+                        {this.props.children}
                     </div>
-
                 </div>
             </div>
         )
