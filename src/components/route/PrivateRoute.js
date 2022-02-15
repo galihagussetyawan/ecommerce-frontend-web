@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 //import context
-import AuthContext from '../contexts/AuthContext';
+import AuthContext from '../../context/AuthContext';
 
 //import services
 import AuthenticationService from '../../services/AuthenticationService';

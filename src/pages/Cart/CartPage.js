@@ -387,7 +387,7 @@ export default class CartPage extends Component {
 
                         {/* floating section */}
                         <div className="md:w-1/5">
-                            <div className="md:w-full md:flex md:flex-col md:gap-4 md:p-4 md:sticky md:top-28 md:border md:rounded-md">
+                            <div className="md:w-full md:flex md:flex-col md:gap-4 md:p-4 md:sticky md:top-24 md:border md:rounded-md">
                                 <div>
                                     <p className="md:text-lg md:font-bold">Ringkasan Belanja</p>
                                 </div>

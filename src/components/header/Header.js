@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useRef, createRef } from 'react';
+import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 //import components
@@ -9,7 +9,7 @@ import Login from '../login/Login';
 import AuthenticationService from '../../services/AuthenticationService';
 
 // import context
-import AuthContext from '../contexts/AuthContext';
+import AuthContext from '../../context/AuthContext';
 export default class Header extends Component {
     static contextType = AuthContext;
 
@@ -64,7 +64,9 @@ export default class Header extends Component {
 
                     {/* section logo */}
                     <div className="section md:w-auto hidden md:block">
-                        <h1 className="text-lg text-green-500">trendyol</h1>
+                        <NavLink to="/">
+                            <h1 className="text-lg text-green-500">trendyol</h1>
+                        </NavLink>
                     </div>
                     {/* akhir section logo */}
 
@@ -199,15 +201,17 @@ export default class Header extends Component {
                                         {this.state.hoverState["dropdown-profile"] &&
                                             <Dropdown>
                                                 <div className="md:w-80 md:flex md:flex-col md:gap-2 md:text-sm">
-                                                    <div className="md:flex md:items-center md:gap-2 md:p-2 md:shadow-md">
-                                                        <div>
-                                                            <div className="md:w-8 md:h-8 md:rounded-full bg-black"></div>
+                                                    <NavLink to="user/setting">
+                                                        <div className="md:flex md:items-center md:gap-2 md:p-2 md:shadow-md">
+                                                            <div>
+                                                                <div className="md:w-8 md:h-8 md:rounded-full bg-black"></div>
+                                                            </div>
+                                                            <div>
+                                                                <p>Galih Agus</p>
+                                                                <p className="md:text-gray-500">Member Silver</p>
+                                                            </div>
                                                         </div>
-                                                        <div>
-                                                            <p>Galih Agus</p>
-                                                            <p className="md:text-gray-500">Member Silver</p>
-                                                        </div>
-                                                    </div>
+                                                    </NavLink>
 
                                                     <div className="md:flex md:w-full md:text-gray-500">
                                                         <div className="md:w-3/5">

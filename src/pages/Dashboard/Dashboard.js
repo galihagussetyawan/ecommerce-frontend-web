@@ -10,8 +10,13 @@ import AddProductComponent from './components/AddProductComponent';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 
+//import helpers
+import StringEncryption from '../../helpers/StringEncryption';
+
 export default class Dashboard extends Component {
     render() {
+        console.log(StringEncryption.encrypt("galih"));
+
         return (
             <Router basename="/dashboard">
                 <Helmet>
@@ -22,7 +27,7 @@ export default class Dashboard extends Component {
 
                 <div className="md:flex">
                     {/* side menu */}
-                    <div className="side-menu md:w-64 md:h-screen md:flex md:flex-col md:gap-5 md:text-sm">
+                    <div className="md:w-64 md:h-full md:flex md:flex-col md:gap-5 md:sticky md:top-20 md:text-sm">
 
                         <div className="md:py-3 md:text-gray-600">
                             <div className="md:flex md:justify-center md:gap-2 md:cursor-pointer">

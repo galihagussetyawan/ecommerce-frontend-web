@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 //import services
 import AuthenticationService from '../../services/AuthenticationService';
-
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -45,10 +44,9 @@ export default class Login extends Component {
                 }
             })
     }
-
     render() {
         return (
-            <div className=" w-screen h-screen flex justify-center items-center">
+            <div className="w-screen h-screen flex justify-center items-center">
                 <div className="w-full h-full md:w-2/5 md:h-4/5 p-6 flex flex-col justify-center items-center">
                     <div className="section hidden md:block md:w-10/12 md:h-4/5 absolute">
                         <img className="md:w-full md:h-full object-contain" src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kratos/45ab29df.png" />
