@@ -1,13 +1,6 @@
-import axios from "axios";
 import fetch from "./Fetch";
 import TokenService from "./TokenService";
-import { BehaviorSubject } from "rxjs";
-
-import { constants } from "../constants";
-
-//import helpers
-import StringEncryption from "../helpers/StringEncryption";
-
+import { BehaviorSubject, retry } from "rxjs";
 class AuthenticationService {
     currentUser = "currentUser";
     currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem("currentUser")));
@@ -39,18 +32,16 @@ class AuthenticationService {
                 password
             })
             .then(response => {
-                console.log(username);
-                console.log(password);
 
-                if (response.data.access_token) {
+                if (response.status === 200) {
                     TokenService.setUser(response.data);
                     this.currentUserSubject.next(response.data);
                 }
 
-                console.log(response.data);
                 return response;
             })
             .catch(error => {
+
                 if (error.response.data.status === 403) {
                     TokenService.removeUser();
                 }
@@ -88,8 +79,8 @@ class AuthenticationService {
     }
 
     //authentication user by role
-    isAuhenticationPublic() {
-        return fetch
+    async isAuhenticationPublic() {
+        return await fetch
             .get("authentication/public")
             .then(response => {
 
@@ -101,8 +92,9 @@ class AuthenticationService {
             });
     }
 
-    isAuthenticationBuyer() {
-        return fetch
+    async isAuthenticationBuyer() {
+
+        return await fetch
             .get("authentication/buyer")
             .then(response => {
 
@@ -114,8 +106,8 @@ class AuthenticationService {
             });
     }
 
-    isAuthenticationSeller() {
-        return fetch
+    async isAuthenticationSeller() {
+        return await fetch
             .get("authentication/seller")
             .then(response => {
 
@@ -124,6 +116,32 @@ class AuthenticationService {
             })
             .catch(error => {
                 if (error) return false;
+            });
+    }
+
+    async refreshToken() {
+        const refreshToken = TokenService.getLocalRefreshToken();
+
+        return await fetch
+            .get("refreshtoken", {
+                headers: {
+                    Authorization: `Bearer ${refreshToken}`
+                }
+            })
+            .then(response => {
+
+                if (response.status === 200) {
+                    TokenService.updateLocalAccessToken(response.data.access_token);
+                }
+
+            })
+            .catch(error => {
+
+                if (error.response.status === 423) {
+                    TokenService.removeUser();
+                }
+
+                return error;
             });
     }
 

@@ -25,8 +25,17 @@ class TokenService {
         localStorage.setItem(this.state.user, JSON.stringify(data));
     }
 
+    getUsername() {
+        const data = JSON.parse(localStorage.getItem(this.state.user));
+
+        if (data === null) return "";
+
+        return data.username;
+    }
+
     removeUser() {
         localStorage.removeItem(this.state.user);
+        window.location.reload(true);
     }
 
     updateLocalAccessToken(token) {

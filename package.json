@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.3.0",
-    "@tailwindcss/line-clamp": "^0.2.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -27,6 +26,7 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.3.1",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "autoprefixer": "^9.8.8",
     "postcss": "^7.0.39",

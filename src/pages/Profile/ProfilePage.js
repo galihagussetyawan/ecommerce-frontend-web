@@ -11,16 +11,18 @@ import FormAddress from './components/Form-Address';
 
 //import context
 import AuthContext from '../../context/AuthContext';
+import UserContext from '../../context/UserContext';
 
 export default class ProfilePage extends Component {
-    static contextType = AuthContext;
+    static contextType = UserContext;
 
     constructor(props) {
         super(props);
 
         this.state = {
             tab: "biodata-diri",
-            closeToggle: false
+            closeToggle: false,
+            authContext: AuthContext
         }
 
         this.handleChangeTab = this.handleChangeTab.bind(this);
@@ -39,9 +41,10 @@ export default class ProfilePage extends Component {
     handleTitleBar() {
         switch (this.state.tab) {
             case "biodata-diri":
-                return "Biodata Diri | Trendyol"
+                return "Biodata Diri | Trendyol";
+
             case "daftar-alamat":
-                return "Daftar Alamat | Trendyol"
+                return "Daftar Alamat | Trendyol";
         }
     }
 
@@ -52,7 +55,7 @@ export default class ProfilePage extends Component {
     }
 
     render() {
-        const { username } = this.context;
+        const { username, contact } = this.context;
 
         return (
             <Fragment>
@@ -63,7 +66,9 @@ export default class ProfilePage extends Component {
                 {this.state.closeToggle &&
                     <DialogModalComponent
                         closeAction={this.handleCloseToggleButton}>
-                        <FormAddress />
+                        <FormAddress
+                            submitForm={this.handleCloseToggleButton}
+                        />
                     </DialogModalComponent>
                 }
 
@@ -168,6 +173,12 @@ export default class ProfilePage extends Component {
                             <BiodataDiri
                                 tab={this.state.tab}
                                 username={username}
+                                birthDate={contact.birth}
+                                email={contact.email}
+                                phone={contact.phone}
+                                address={contact.address1}
+                                city={contact.city}
+                                state={contact.state}
                             />
 
                             <DaftarAlamat

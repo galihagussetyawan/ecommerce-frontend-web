@@ -5,7 +5,7 @@ import debounce from "lodash.debounce";
 import { Stepper } from "react-form-stepper";
 
 // import serivices
-import AuthenticationService from "../../../services/AuthenticationService";
+import CartService from "../../../services/CartService";
 
 const stepStyle = {
     // activeBgColor: '#10b981',
@@ -106,10 +106,6 @@ export default class FormAddress extends Component {
 
 
     render() {
-        console.log(this.state);
-        AuthenticationService.isAuthenticationSeller()
-            .then(response => console.log(response));
-
         return (
             <div className=" flex flex-col gap-5">
 
@@ -206,7 +202,7 @@ export default class FormAddress extends Component {
 
                                 <div className="flex justify-center gap-3">
                                     <button className="md:p-1 md:px-5 rounded-md text-gray-400 bg-gray-300" onClick={this.handleReturnStep}>Sebelumnya</button>
-                                    <button className="md:p-1 md:px-5 rounded-md font-bold text-white bg-green-500" onClick={this.handleSaveForm}>Simpan</button>
+                                    <button className="md:p-1 md:px-5 rounded-md font-bold text-white bg-green-500" onClick={this.props.submitForm}>Simpan</button>
                                 </div>
 
 

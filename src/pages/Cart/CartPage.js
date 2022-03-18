@@ -1,228 +1,27 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, Suspense } from "react";
 import { Helmet } from "react-helmet";
 
 //...import components
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 
+// import services
+import CartService from "../../services/CartService";
+
 //...import helpers
 import { RupiahFormat } from '../../helpers/RupiahFormat';
 
-const dataElektronik = [
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: 15,
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    },
-    {
-        id: 1,
-        name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-        href: '#',
-        imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: '14.799.000',
-        color: 'Black',
-        isChecked: false
-    }
-
-    // More products...
-]
+//import context
+import CartContext from '../../context/CartContext';
 
 export default class CartPage extends Component {
+    static contextType = CartContext;
+
     constructor(props) {
         super(props);
 
         this.state = {
-            dataElektronik: [
-                {
-                    id: 1,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: true
-                },
-                {
-                    id: 2,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: true
-                },
-                {
-                    id: 3,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: false
-                },
-                {
-                    id: 4,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: false
-                },
-                {
-                    id: 5,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: false
-                },
-                {
-                    id: 6,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: false
-                },
-                {
-                    id: 6,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: false
-                },
-                {
-                    id: 8,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: false
-                },
-                {
-                    id: 9,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: false
-                },
-                {
-                    id: 10,
-                    name: 'Apple Macbook Air 2020 M1 Chip 13 inch 512GB Touch ID Grey Silver Gold - Inter JAPAN, 256GB Silver',
-                    href: '#',
-                    imageSrc: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/9/2/cacf4abd-94a7-4aa1-b633-ef8a98af6524.jpg',
-                    imageAlt: "Front of men's Basic Tee in black.",
-                    price: 5000,
-                    color: 'Black',
-                    isChecked: false
-                }
-
-                // More products...
-            ],
-            totalPrice: 0
+            totalPrice: 0,
         }
 
         this.handleAllCheck = this.handleAllCheck.bind(this);
@@ -231,78 +30,52 @@ export default class CartPage extends Component {
     }
 
     handleAllCheck(event) {
-        let data = this.state.dataElektronik;
-        data.forEach(data => (data.isChecked = event.target.checked));
-        this.setState({
-            dataElektronik: data
-        })
+        this.context.data.forEach((data, index) => {
+
+            CartService.updateCart(data.id, data.quantity, event.target.checked)
+                .then(response => {
+                    this.context.checkDataChange(true);
+                })
+            this.context.checkDataChange(false);
+        });
     }
 
     handleCheckedElement(event) {
-        let data = this.state.dataElektronik;
-        data.forEach(data => {
-            if (data.id == event.target.value) {
-                data.isChecked = event.target.checked
-            }
-        });
 
-        this.setState({ dataElektronik: data });
+        let id = event.target.id;
+        let index = event.target.name;
+        let quantity = this.context.data[index].quantity;
+
+        CartService.updateCart(id, quantity, event.target.checked)
+            .then(response => {
+                this.context.checkDataChange(true);
+            })
+
+        this.context.checkDataChange(false);
     }
 
-    handleDeleteElement(index) {
-        let data = this.state.dataElektronik;
-        data.splice(index, 1);
+    handleDeleteElement(id, index) {
+        return () => {
+            // let temp = this.context.data;
+            // temp.splice(index, 1);
 
-        this.setState({ dataElektronik: data })
-    }
+            CartService.deleteCart(id)
+                .then(response => {
+                    // this.context.updateCart(temp);
+                    this.context.checkDataChange(true);
+                })
 
-    componentWillMount() {
-        let total = 0;
-
-        this.state.dataElektronik.forEach(data => {
-            if (data.isChecked) total += data.price;
-        })
-
-        this.setState({ totalPrice: total });
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-
-        function isEqual(arr1, arr2) {
-            if (arr1.length != arr2.length) {
-                return false;
-            } else {
-                let result = false;
-
-                for (let i = 0; i < arr1.length; i++) {
-                    if (arr1[i].isChecked != arr2[i].isChecked) {
-                        return false;
-                    } else {
-                        result = true;
-                    }
-                }
-                return result;
-            }
-        }
-
-        let total = 0;
-        if (isEqual(this.state.dataElektronik, prevState.dataElektronik)) {
-
-            for (let i = 0; i < this.state.dataElektronik.length; i++) {
-                if (this.state.dataElektronik[i].isChecked) {
-                    total += this.state.dataElektronik[i].price;
-                }
-            }
-
-            setTimeout(() => {
-                this.setState({ totalPrice: total })
-            });
+            this.context.checkDataChange(false);
         }
     }
 
     render() {
+        const { data, totalPrice, totalQuantity } = this.context;
+
+        // console.log(data);
+
         return (
-            <Fragment>
+            <Fragment >
                 <Helmet>
                     <title>Keranjang | Trendyol</title>
                 </Helmet>
@@ -319,25 +92,27 @@ export default class CartPage extends Component {
                             </div>
                             <div className="md:w-full md:flex md:items-center">
                                 <div className="md:w-8 md:flex md:items-center">
-                                    <input type="checkbox" onClick={this.handleAllCheck} />
+                                    <input type="checkbox" onChange={this.handleAllCheck} />
                                 </div>
                                 <p>Pilih Semua</p>
                             </div>
 
                             {/* card product cart */}
                             {
-                                this.state.dataElektronik.map((data, index) => {
+                                data.length > 0 && data.map((data, index) => {
                                     return (
-                                        <div className="md:flex md:flex-col md:gap-5 md:py-5 md:border-b-4 md:border-gray-100">
+                                        <div key={index} className="md:flex md:flex-col md:gap-5 md:py-5 md:border-b-4 md:border-gray-100">
                                             <div className="md:w-full md:flex">
                                                 <div className="md:w-8 md:flex md:items-center">
-                                                    <input type="checkbox" checked={data.isChecked} value={data.id} onClick={this.handleCheckedElement} />
+                                                    <input id={data.id} name={index} type="checkbox" checked={data.checkout} onChange={this.handleCheckedElement} />
                                                 </div>
                                                 <div className="md:flex md:gap-2">
-                                                    <div className="md:w-16 md:h-16 md:bg-black"></div>
+                                                    <div className="md:w-16 md:h-16">
+                                                        <img src={data.product.images[0].url} />
+                                                    </div>
                                                     <div>
-                                                        <p>{data.name}</p>
-                                                        <p>{RupiahFormat(data.price)}</p>
+                                                        <p>{data.product.name}</p>
+                                                        <p>{`Rp ${RupiahFormat(data.product.price)}`}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -351,7 +126,7 @@ export default class CartPage extends Component {
                                                         <div className="md:flex md:items-center md:gap-2">
                                                             <p>Pindahkan ke Wishlist</p>
                                                             <div>|</div>
-                                                            <button onClick={() => this.handleDeleteElement(index)}>
+                                                            <button onClick={this.handleDeleteElement(data.id, index)}>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                                 </svg>
@@ -365,7 +140,7 @@ export default class CartPage extends Component {
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                 </svg>
                                                             </button>
-                                                            <input className="md:w-11 md:text-center md:outline-none" value="1" />
+                                                            <input className="md:w-11 md:text-center md:outline-none" defaultValue={data.quantity} />
                                                             <button>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -393,8 +168,8 @@ export default class CartPage extends Component {
                                 </div>
                                 <div>
                                     <div className="md:flex md:justify-between">
-                                        <p>Total Harga (1 barang)</p>
-                                        <p>Rp21.000</p>
+                                        <p>{`Total Harga (${totalQuantity} barang)`}</p>
+                                        <p>{`Rp ${RupiahFormat(totalPrice)}`}</p>
                                     </div>
                                     <div className="md:flex md:justify-between">
                                         <p>Total Diskon Barang</p>
@@ -406,7 +181,7 @@ export default class CartPage extends Component {
                                 </div>
                                 <div className="md:flex md:justify-between">
                                     <p className="md:text-lg md:font-bold">Total Harga</p>
-                                    <p className="md:text-lg md:font-bold">{RupiahFormat(this.state.totalPrice)}</p>
+                                    <p className="md:text-lg md:font-bold">{`Rp ${RupiahFormat(totalPrice)}`}</p>
                                 </div>
                                 <div>
                                     <button className="md:w-full md:rounded-md md:p-2 md:text-lg md:font-bold md:text-white md:bg-green-500">Beli</button>
@@ -415,7 +190,6 @@ export default class CartPage extends Component {
                         </div>
                         {/* akhir floating section */}
                     </div>
-
 
                 </div>
 

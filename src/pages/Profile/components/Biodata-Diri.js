@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+// import helper
+import { convertDate } from "../../../helpers/convertDate";
 export default class BiodataDiri extends Component {
     constructor(props) {
         super(props);
@@ -28,22 +30,34 @@ export default class BiodataDiri extends Component {
                     </div>
                     <div className="md:w-full md:flex">
                         <p className="md:w-32">Tanggal Lahir</p>
-                        <p>Galih Developnent</p>
+                        <p>{convertDate(this.props.birthDate)}</p>
                     </div>
                     <div className="md:w-full md:flex">
                         <p className="md:w-32">Jenis Kelamin</p>
-                        <p>Galih Developnent</p>
+                        <p>Laki-Laki</p>
                     </div>
                     <div className="md:w-full">
                         <h1 className="md:font-bold md:text-lg">Ubah Kontak</h1>
                     </div>
                     <div className="md:w-full md:flex">
                         <p className="md:w-32">Email</p>
-                        <p>setywan.galih@gmail.com</p>
+                        <p>{this.props.email}</p>
                     </div>
                     <div className="md:w-full md:flex">
                         <p className="md:w-32">Nomor Hp</p>
-                        <p>Galih Developnent</p>
+                        <p>{this.props.phone}</p>
+                    </div>
+                    <div className="md:w-full md:flex">
+                        <p className="md:w-32">Alamat</p>
+                        <p>{this.props.address}</p>
+                    </div>
+                    <div className="md:w-full md:flex">
+                        <p className="md:w-32">Kota</p>
+                        <p>{this.props.city}</p>
+                    </div>
+                    <div className="md:w-full md:flex">
+                        <p className="md:w-32">Provinsi</p>
+                        <p>{this.props.state}</p>
                     </div>
                 </div>
             </div>

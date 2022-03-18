@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState, useContext, useEffect, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 
 //import components
@@ -9,9 +9,19 @@ import ProductCardGrid from '../../components/product-card-grid/Product-Card-Gri
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import Login from '../../components/login/Login';
+import AlertNotification from '../../components/alert-notification/AlertNotification';
 
-//import serviceas
-import AuthenticationService from '../../services/AuthenticationService';
+//import context
+import ProductContext from '../../context/ProductContext';
+
+//import shimmer effect components
+import CarousellShimmer from '../../components/shimmer-effect/Carousell-Shimmer';
+
+//import animation load
+import HomePageLoading from './HomePageLoading';
+
+//lazy component
+// const Carousell = React.lazy(() => import('../../components/carousell/Carousell'));
 
 const dataElektronik = [
     {
@@ -203,38 +213,52 @@ const dataKuliner = [
 
 const category = ["Fashion Wanita", "Fashion Pria", "Anak-Anak", "Travel & Entertaiment", "keuangan", "Rumah Tangga", "Supermarket", "Kosmetik", "Tas Sepatu", "Alat & Aksesoris", "Olahraga & Outdoor", "Elektronik", "Komputer & Laptop"];
 const urlIcon = "https://images.tokopedia.net/img/cache/64-square/iEWsxH/2021/4/19/832aaa22-b9bf-42d3-86da-21b77dca4716.png?ect=4g";
-export default class HomePage extends Component {
-    constructor(props) {
-        super(props);
+export default function HomePage() {
 
-        this.state = {
-            toggleLogin: false
-        };
+    const { products, loadedProucts } = useContext(ProductContext);
 
-        this.onToggleLogin = this.onToggleLogin.bind(this);
-    }
+    const [toggleLogin, setToggleLogin] = useState(false);
 
-    onToggleLogin() {
-        this.setState({ toggleLogin: !this.state.toggleLogin })
+    const onToggleLogin = () => {
+        setToggleLogin(!toggleLogin);
     };
 
-    render() {
-        return (
-            <Fragment>
-                <Helmet>
-                    <title>Situs Jual Beli Online Terlengkap, Terpercaya</title>
-                </Helmet>
+    // const handleToggleNotification = () => {
+    //     setNotification(false);
+    // };
 
-                {this.state.toggleLogin && <Login closeAction={this.onToggleLogin} />}
+
+    return (
+        <Fragment>
+
+            {/* header, dialog, notif */}
+            <Helmet>
+                <title>Situs Jual Beli Online Terlengkap, Terpercaya</title>
+            </Helmet>
+
+            {/* {
+                notification.isOpen &&
+                <AlertNotification
+                    onClose={handleToggleNotification}
+                    status={notification.status}
+                    message={notification.message}
+                />
+            } */}
+
+            {toggleLogin && <Login closeAction={onToggleLogin} />}
+            {/* end heade */}
+
+
+            <div className='md:space-y-5 space-y-3'>
 
                 <Header
-                    onLoginBox={this.onToggleLogin}
+                    onLoginBox={onToggleLogin}
                 >
                     {/* category section */}
                     <div className="category-section md:w-3/4 w-11/12 flex md:flex md:justify-between gap-5 md:gap-0 md:pb-3 overflow-x-scroll md:overflow-x-hidden">
-                        {category.map(data => {
+                        {category.map((data, index) => {
                             return (
-                                <div className="card-kategori w-14 flex flex-col justify-between items-center md:w-auto">
+                                <div key={index} className="card-kategori w-14 flex flex-col justify-between items-center md:w-auto">
                                     <div className="w-14 h-14 p-1 rounded-full md:hidden bg-white">
                                         <img className="object-contain" src={urlIcon}></img>
                                     </div>
@@ -248,27 +272,39 @@ export default class HomePage extends Component {
                     {/* akhir category */}
                 </Header>
 
-                <div className="max-w-full flex flex-col items-center overflow-hidden">
+                <div className="max-w-full flex flex-col items-center space-y-5 overflow-hidden">
 
+                    {/* <Suspense fallback={<CarousellShimmer />}> */}
                     <Carousell />
-                    <SpecialProductBanner />
-                    <ProductCardScrollHorizontal
-                        heading="Laptop & Komputer"
-                        data={dataElektronik}
-                    />
+                    {/* </Suspense> */}
+
+                    {
+                        loadedProucts
+                            ? <Fragment>
+                                <SpecialProductBanner />
+
+                                <ProductCardScrollHorizontal
+                                    heading="Laptop & Komputer"
+                                    data={products}
+                                />
 
 
-                    <ProductCardScrollHorizontal
-                        heading="Kuliner Khas Bandung"
-                        data={dataKuliner}
-                    />
+                                <ProductCardScrollHorizontal
+                                    heading="Kuliner Khas Bandung"
+                                    data={products}
+                                />
+                                <div className="w-screen mb-3 mt-3 border-4 border-gray-200"></div>
+                                <ProductCardGrid data={dataKuliner} />
+                            </Fragment>
 
-                    <ProductCardGrid data={dataKuliner} />
+                            : <HomePageLoading />
+                    }
+
                 </div>
 
                 <Footer />
 
-            </Fragment>
-        )
-    }
+            </div>
+        </Fragment >
+    )
 };

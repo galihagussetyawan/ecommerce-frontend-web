@@ -1,19 +1,30 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 //import context
 import AuthContext from '../../context/AuthContext';
 
-//import services
-import AuthenticationService from '../../services/AuthenticationService';
+export default function PrivateRoute({ component: Component, role, ...rest }) {
+    const { isSeller, isBuyer } = useContext(AuthContext);
 
+    const check = () => {
 
-export default function PrivateRoute({ component: Component, ...rest }) {
-    const { username, isAuthenticated } = useContext(AuthContext);
+        if (role === "BUYER") {
+            // return isBuyer.length === 0 ? false : isBuyer;
+            return isBuyer;
+        } else if (role === "SELLER") {
+            // return isSeller.length === 0 ? false : isSeller;
+            return isSeller;
+        }
+
+        return false;
+    };
 
     return (
-        <Route {...rest} render={props => (
-            isAuthenticated ? <Component {...props} /> : <Redirect to="/register" />
-        )} />
+        <>
+            <Route {...rest} render={props => (
+                check() ? <Component {...props} /> : <Redirect to="/register" />
+            )} />
+        </>
     )
 }

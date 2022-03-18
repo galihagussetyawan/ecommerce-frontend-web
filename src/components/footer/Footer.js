@@ -15,7 +15,7 @@ export default function Footer() {
                 <div className="flex flex-col gap-1">
                     <p className="font-bold text-gray-800">Gunakan Aplikasi Trendyol</p>
                     <div className="flex gap-2">
-                        <img className="w-32 h-9 bg-black"></img>
+                        <div className="w-32 h-9 bg-black"></div>
                         <img className="w-32 h-9 bg-black"></img>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ export default function Footer() {
 
                 <div className="section w-1/2 flex justify-end">
                     <div className=" w-10/12 h-5/6 flex justify-end">
-                        <img src="https://ecs7.tokopedia.net/assets-unify/img/il-footer-2.jpg"></img>
+                        <img alt='footer image' className='md:w-full md:h-full' src="https://ecs7.tokopedia.net/assets-unify/img/il-footer-2.jpg"></img>
                     </div>
                 </div>
             </div>

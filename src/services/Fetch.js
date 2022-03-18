@@ -1,12 +1,16 @@
 import Axios from 'axios';
 import { constants } from '../constants';
 import TokenService from './TokenService';
+import https from 'https';
 
 const instance = Axios.create({
     baseURL: constants.API_URL,
     headers: {
         "Content-Type": "application/json",
-    }
+    },
+    httpsAgent: new https.Agent({
+        rejectUnauthorized: false
+    })
 });
 
 instance.interceptors.request.use(
@@ -20,6 +24,7 @@ instance.interceptors.request.use(
         return config;
     },
     error => {
+
         return Promise.reject(error);
     }
 );
@@ -29,25 +34,36 @@ instance.interceptors.response.use(
     error => {
 
         const originalRequest = error.config;
-        let refrestToken = TokenService.getLocalRefreshToken();
+        let refreshToken = TokenService.getLocalRefreshToken();
 
-        if (refrestToken && error.response.status === 401 && !originalRequest._retry) {
+        if (refreshToken && error.response.status === 401 && !originalRequest._retry) {
 
             originalRequest._retry = true;
 
             return Axios
                 .get(constants.API_URL + "refreshtoken", {
                     headers: {
-                        Authorization: `Bearer ${refrestToken}`
+                        Authorization: `Bearer ${refreshToken}`
                     }
                 })
                 .then(response => {
+
                     if (response.status === 200) {
 
                         TokenService.updateLocalAccessToken(response.data.access_token);
                         console.log("Access token refreshed!");
+                        window.location.reload(true);
+
                         return Axios(originalRequest);
                     }
+                })
+                .catch(error => {
+                    if (error.response.status === 423) {
+                        TokenService.removeUser();
+                    }
+
+                    return error;
+
                 })
         }
 

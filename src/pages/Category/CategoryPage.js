@@ -252,7 +252,7 @@ export default class CategoryPage extends Component {
 
                                             <div className="description-wrapper w-full h-2/5 p-1 md:p-3">
                                                 <p className="product-name text-xs line-clamp-3 md:line-clamp-4">{data.name}</p>
-                                                <p className="product-name text-xs text-base font-semibold">{data.title}</p>
+                                                <p className="product-name text-xs font-semibold">{data.title}</p>
                                                 <p className="product-name text-xs">{this.props.color}</p>
 
                                                 <div className="detail text-xs text-gray-500">

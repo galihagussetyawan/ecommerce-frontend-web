@@ -1,0 +1,103 @@
+{
+  "version": "0.1.0",
+  "name": "ecommerce",
+  "problems": [
+    "extraneous: bindings@1.5.0 /run/media/galih/DATA2/Programming/Web/Ecommerce Website/client/node_modules/bindings",
+    "extraneous: file-uri-to-path@1.0.0 /run/media/galih/DATA2/Programming/Web/Ecommerce Website/client/node_modules/file-uri-to-path",
+    "extraneous: nan@2.15.0 /run/media/galih/DATA2/Programming/Web/Ecommerce Website/client/node_modules/nan"
+  ],
+  "dependencies": {
+    "@craco/craco": {
+      "version": "6.4.3",
+      "resolved": "https://registry.npmjs.org/@craco/craco/-/craco-6.4.3.tgz"
+    },
+    "@tailwindcss/line-clamp": {
+      "version": "0.2.2",
+      "resolved": "https://registry.npmjs.org/@tailwindcss/line-clamp/-/line-clamp-0.2.2.tgz"
+    },
+    "@testing-library/jest-dom": {
+      "version": "5.16.2",
+      "resolved": "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-5.16.2.tgz"
+    },
+    "@testing-library/react": {
+      "version": "11.2.7",
+      "resolved": "https://registry.npmjs.org/@testing-library/react/-/react-11.2.7.tgz"
+    },
+    "@testing-library/user-event": {
+      "version": "12.8.3",
+      "resolved": "https://registry.npmjs.org/@testing-library/user-event/-/user-event-12.8.3.tgz"
+    },
+    "axios": {
+      "version": "0.23.0",
+      "resolved": "https://registry.npmjs.org/axios/-/axios-0.23.0.tgz"
+    },
+    "bindings": {
+      "version": "1.5.0",
+      "resolved": "https://registry.npmjs.org/bindings/-/bindings-1.5.0.tgz",
+      "extraneous": true,
+      "problems": [
+        "extraneous: bindings@1.5.0 /run/media/galih/DATA2/Programming/Web/Ecommerce Website/client/node_modules/bindings"
+      ]
+    },
+    "file-uri-to-path": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz",
+      "extraneous": true,
+      "problems": [
+        "extraneous: file-uri-to-path@1.0.0 /run/media/galih/DATA2/Programming/Web/Ecommerce Website/client/node_modules/file-uri-to-path"
+      ]
+    },
+    "lodash.debounce": {
+      "version": "4.0.8",
+      "resolved": "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
+    },
+    "nan": {
+      "version": "2.15.0",
+      "resolved": "https://registry.npmjs.org/nan/-/nan-2.15.0.tgz",
+      "extraneous": true,
+      "problems": [
+        "extraneous: nan@2.15.0 /run/media/galih/DATA2/Programming/Web/Ecommerce Website/client/node_modules/nan"
+      ]
+    },
+    "react-dom": {
+      "version": "17.0.2",
+      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
+    },
+    "react-form-stepper": {
+      "version": "1.4.3",
+      "resolved": "https://registry.npmjs.org/react-form-stepper/-/react-form-stepper-1.4.3.tgz"
+    },
+    "react-helmet": {
+      "version": "6.1.0",
+      "resolved": "https://registry.npmjs.org/react-helmet/-/react-helmet-6.1.0.tgz"
+    },
+    "react-infinite-scroll-component": {
+      "version": "6.1.0",
+      "resolved": "https://registry.npmjs.org/react-infinite-scroll-component/-/react-infinite-scroll-component-6.1.0.tgz"
+    },
+    "react-router-dom": {
+      "version": "5.3.0",
+      "resolved": "https://registry.npmjs.org/react-router-dom/-/react-router-dom-5.3.0.tgz"
+    },
+    "react-scripts": {
+      "version": "4.0.3",
+      "resolved": "https://registry.npmjs.org/react-scripts/-/react-scripts-4.0.3.tgz"
+    },
+    "react": {
+      "version": "17.0.2",
+      "resolved": "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
+    },
+    "rxjs": {
+      "version": "7.5.4",
+      "resolved": "https://registry.npmjs.org/rxjs/-/rxjs-7.5.4.tgz"
+    },
+    "swiper": {
+      "version": "6.8.4",
+      "resolved": "https://registry.npmjs.org/swiper/-/swiper-6.8.4.tgz"
+    },
+    "web-vitals": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/web-vitals/-/web-vitals-1.1.2.tgz"
+    }
+  }
+}

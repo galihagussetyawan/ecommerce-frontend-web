@@ -3,7 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 //import services
 import AuthenticationService from '../../services/AuthenticationService';
+
+//import context
+import AuthContext from '../../context/AuthContext';
 export default class Login extends Component {
+    static contextType = AuthContext;
+
     constructor(props) {
         super(props);
 
@@ -32,15 +37,23 @@ export default class Login extends Component {
         AuthenticationService.login(this.state.username, this.state.password)
             .then(response => {
 
-                if (response.status === 403) {
-                    this.setState({
-                        error: true
-                    })
-                }
+                // if (response.status === 403) {
+                //     this.setState({
+                //         error: true
+                //     })
+                // }
 
                 if (response.status === 200) {
                     console.log("login success");
+                    this.context.login();
                     window.location.reload(true);
+                }
+            })
+            .catch(error => {
+                if (error) {
+                    this.setState({
+                        error: true
+                    })
                 }
             })
     }

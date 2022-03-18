@@ -7,13 +7,11 @@ export default class ProductCardGrid extends Component {
     render() {
         return (
             <Fragment>
-                <div className="w-screen mb-3 mt-3 border-4 border-gray-200"></div>
+                <div className="w-11/12 md:w-3/4 flex gap-3 overflow-x-scroll pt-3 pb-3">
 
-                <div className="w-11/12 md:w-3/4 flex gap-3 overflow-x-scroll pt-3 pb-3 md:mb-10 bg-white">
-
-                    {tag.map(data => {
+                    {tag.map((data, index) => {
                         return (
-                            <div className="wrapper flex gap-5">
+                            <div key={index} className="wrapper flex gap-5">
                                 <div className="wrap-card h-16 md:h-16">
                                     <div className="w-36 h-full md:w-52 rounded-md flex justify-center items-center bg-red-500">
                                         <div className="w-11/12 h-5/6 flex items-center">
@@ -33,17 +31,17 @@ export default class ProductCardGrid extends Component {
                         className={"grid grid-cols-2 gap-2 md:grid md:grid-cols-6 md:gap-2"}
                         onScroll={true}
                     >
-                        {this.props.data.map(data => {
+                        {this.props.data.map((data, index) => {
                             return (
-                                <div className="card cursor-pointer w-auto rounded-md overflow-hidden border shadow-sm">
+                                <div key={index} className="card cursor-pointer w-auto rounded-md overflow-hidden border shadow-sm">
 
                                     <div className="image-wrapper w-full h-3/5">
-                                        <img className="w-full h-full object-cover object-center" src={data.imageSrc}></img>
+                                        <img className="w-full h-full object-cover object-center" alt={data.name} src={data.imageSrc}></img>
                                     </div>
 
                                     <div className="description-wrapper w-full h-2/5 p-1 md:p-3">
                                         <p className="product-name text-xs line-clamp-3 md:line-clamp-4">{data.name}</p>
-                                        <p className="product-name text-xs text-base font-semibold">{data.title}</p>
+                                        <p className="product-name text-xs font-semibold">{data.title}</p>
                                         <p className="product-name text-xs">{this.props.color}</p>
 
                                         <div className="detail text-xs text-gray-500">
